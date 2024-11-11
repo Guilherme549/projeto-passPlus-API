@@ -1,0 +1,14 @@
+{
+  "name": "api-pass",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "migrate": "node ./db/migrations/createTables.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "sqlite3": "^5.1.7"
+  }
+}
