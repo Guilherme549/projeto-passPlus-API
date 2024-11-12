@@ -7,10 +7,24 @@ API para gerenciamento de filas em clínicas e hospitais, permitindo o cadastro 
 ## **Instalação**
 
 1. Clone o repositório.
-2. Instale as dependências.
-3. Configure o banco de dados.
-4. Inicie o servidor.
+2. Instale as dependências:
+   - Execute o comando:
+     ```
+     npm install
+     ```
 
+3. Configure o banco de dados:
+   - Execute o comando para rodar as migrações do banco de dados:
+     ```
+     npx sequelize-cli db:migrate
+     ```
+
+4. Inicie o servidor:
+   - Execute o comando:
+     ```
+     npm start
+     ```
+   A API estará disponível em: `http://localhost:3000`.
 A API estará disponível em: `http://localhost:3000`
 
 ---
