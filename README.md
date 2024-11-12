@@ -25,7 +25,6 @@ API para gerenciamento de filas em clínicas e hospitais, permitindo o cadastro 
      npm start
      ```
    A API estará disponível em: `http://localhost:3000`.
-A API estará disponível em: `http://localhost:3000`
 
 ---
 
