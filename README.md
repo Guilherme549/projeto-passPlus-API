@@ -1,5 +1,3 @@
-# Save the README content to a file named README.md
-readme_content = """
 # **API Pass+**
 
 API para gerenciamento de filas em clínicas e hospitais, permitindo o cadastro de pacientes, gerenciamento de filas por especialidade e agendamento de consultas.
@@ -8,156 +6,104 @@ API para gerenciamento de filas em clínicas e hospitais, permitindo o cadastro 
 
 ## **Instalação**
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/Guilherme549/projeto-passPlus-API.git
-   cd projeto-passPlus-API
-Instale as dependências:
+1. Clone o repositório.
+2. Instale as dependências.
+3. Configure o banco de dados.
+4. Inicie o servidor.
 
-bash
-Sempre exibir os detalhes
+A API estará disponível em: `http://localhost:3000`
 
-Copiar código
+---
 
-npm install
-Configure o banco de dados:
+## **Rotas da API**
 
-bash
-Sempre exibir os detalhes
+### **1. Rota de Pacientes**
 
-Copiar código
-npx sequelize-cli db:migrate
-Inicie o servidor:
+As rotas de pacientes permitem realizar operações básicas de CRUD (criar, ler, atualizar, deletar) para o gerenciamento de pacientes.
 
-bash
-Sempre exibir os detalhes
+#### **GET /pacientes**  
+**Descrição**: Lista todos os pacientes cadastrados.  
+**Exemplo de uso**:
+- Envie uma requisição `GET` para `http://localhost:3000/pacientes`.
+- **Resposta**: A API retornará uma lista de pacientes.
 
-Copiar código
-npm start
-A API estará disponível em: http://localhost:3000
+#### **POST /pacientes**  
+**Descrição**: Cria um novo paciente.  
+**Exemplo de uso**:
+- Envie uma requisição `POST` para `http://localhost:3000/pacientes` com o corpo da requisição contendo o nome e idade do paciente.
+- **Exemplo de dados**: 
+  - Nome: João
+  - Idade: 25
+- **Resposta**: A API retornará os dados do paciente recém-criado com o ID gerado.
 
-Rotas da API
-Pacientes
-Listar todos os pacientes
+#### **GET /pacientes/:id**  
+**Descrição**: Consulta um paciente específico pelo ID.  
+**Exemplo de uso**:
+- Envie uma requisição `GET` para `http://localhost:3000/pacientes/1` (substitua `1` pelo ID do paciente que deseja consultar).
+- **Resposta**: A API retornará os dados do paciente com o ID fornecido.
 
-GET /pacientes
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
+#### **PUT /pacientes/:id**  
+**Descrição**: Atualiza as informações de um paciente específico pelo ID.  
+**Exemplo de uso**:
+- Envie uma requisição `PUT` para `http://localhost:3000/pacientes/1` (substitua `1` pelo ID do paciente que deseja atualizar) com o corpo da requisição contendo os dados atualizados (nome e idade).
+- **Exemplo de dados**: 
+  - Nome: João Atualizado
+  - Idade: 26
+- **Resposta**: A API retornará os dados atualizados do paciente.
 
-Copiar código
-[
-  { "id": 1, "nome": "João", "idade": 25 },
-  { "id": 2, "nome": "Maria", "idade": 30 }
-]
-Criar um paciente
+#### **DELETE /pacientes/:id**  
+**Descrição**: Remove um paciente específico pelo ID.  
+**Exemplo de uso**:
+- Envie uma requisição `DELETE` para `http://localhost:3000/pacientes/1` (substitua `1` pelo ID do paciente que deseja remover).
+- **Resposta**: A API retornará uma resposta vazia indicando que o paciente foi removido com sucesso.
 
-POST /pacientes
-Body:
-json
-Sempre exibir os detalhes
+---
 
-Copiar código
-{ "nome": "João", "idade": 25 }
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
+### **2. Rota de Filas**
 
-Copiar código
-{ "id": 1, "nome": "João", "idade": 25 }
-Consultar um paciente por ID
+As rotas de filas permitem a criação e consulta de filas de especialidade, onde pacientes podem ser agrupados para o atendimento por especialidade.
 
-GET /pacientes/:id
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
+#### **GET /filas**  
+**Descrição**: Lista todas as filas disponíveis.  
+**Exemplo de uso**:
+- Envie uma requisição `GET` para `http://localhost:3000/filas`.
+- **Resposta**: A API retornará uma lista de filas de especialidades.
 
-Copiar código
-{ "id": 1, "nome": "João", "idade": 25 }
-Atualizar um paciente
+#### **POST /filas**  
+**Descrição**: Cria uma nova fila de atendimento para uma especialidade.  
+**Exemplo de uso**:
+- Envie uma requisição `POST` para `http://localhost:3000/filas` com o corpo da requisição contendo a especialidade.
+- **Exemplo de dados**: 
+  - Especialidade: Cardiologia
+- **Resposta**: A API retornará a fila recém-criada com o ID gerado.
 
-PUT /pacientes/:id
-Body:
-json
-Sempre exibir os detalhes
+#### **GET /filas/:id**  
+**Descrição**: Consulta uma fila específica pelo ID.  
+**Exemplo de uso**:
+- Envie uma requisição `GET` para `http://localhost:3000/filas/1` (substitua `1` pelo ID da fila que deseja consultar).
+- **Resposta**: A API retornará os dados da fila com o ID fornecido.
 
-Copiar código
-{ "nome": "João Atualizado", "idade": 26 }
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
+---
 
-Copiar código
-{ "id": 1, "nome": "João Atualizado", "idade": 26 }
-Remover um paciente
+### **3. Rota de Consultas**
 
-DELETE /pacientes/:id
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
+As rotas de consultas permitem agendar e listar consultas para os pacientes de acordo com as especialidades e horários.
 
-Copiar código
-{}
-Filas
-Listar todas as filas
+#### **GET /consultas**  
+**Descrição**: Lista todas as consultas agendadas.  
+**Exemplo de uso**:
+- Envie uma requisição `GET` para `http://localhost:3000/consultas`.
+- **Resposta**: A API retornará uma lista de todas as consultas agendadas.
 
-GET /filas
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
+#### **POST /consultas**  
+**Descrição**: Agendar uma nova consulta para um paciente.  
+**Exemplo de uso**:
+- Envie uma requisição `POST` para `http://localhost:3000/consultas` com o corpo da requisição contendo o ID do paciente e a data da consulta.
+- **Exemplo de dados**: 
+  - PacienteId: 1
+  - Data: 2024-01-01
+- **Resposta**: A API retornará os dados da consulta recém-agendada com o ID gerado.
 
-Copiar código
-[
-  { "id": 1, "especialidade": "Cardiologia", "pacientes": [] }
-]
-Criar uma fila
+---
 
-POST /filas
-Body:
-json
-Sempre exibir os detalhes
 
-Copiar código
-{ "especialidade": "Cardiologia" }
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
-
-Copiar código
-{ "id": 1, "especialidade": "Cardiologia", "pacientes": [] }
-Consultar uma fila por ID
-
-GET /filas/:id
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
-
-Copiar código
-{ "id": 1, "especialidade": "Cardiologia", "pacientes": [] }
-Consultas
-Listar todas as consultas
-
-GET /consultas
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
-
-Copiar código
-[
-  { "id": 1, "pacienteId": 1, "data": "2024-01-01" }
-]
-Agendar uma consulta
-
-POST /consultas
-Body:
-json
-Sempre exibir os detalhes
-
-Copiar código
-{ "pacienteId": 1, "data": "2024-01-01" }
-Exemplo de Resposta:
-json
-Sempre exibir os detalhes
-
-Copiar código
-{ "id": 1, "pacienteId": 1, "data": "2024-01-01" }
